@@ -19,6 +19,30 @@ app.get('/', (req, res) => {
     }
 );
 
+app.get('/todo', (req, res) => {
+    knex.select('*').from('todo')
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => { 
+            console.log(err);
+            res.send(`Error ${err}`);
+        });
+    }
+);
+
+app.get('/comment', (req, res) => {
+    knex.select('*').from('comment')
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => { 
+            console.log(err);
+            res.send(`Error ${err}`);
+        });
+    }
+);
+
 app.get('/data', (req, res) => {
     res.send('Hello');
     }
