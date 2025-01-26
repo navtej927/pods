@@ -20,16 +20,18 @@ app.get('/', (req, res) => {
 );
 
 app.get('/todo', (req, res) => {
-    knex.select('*').from('todo')
+    knex('todo')
+        .select('todo.*', 'user.name as user_name', 'user.email as user_email')
+        .leftJoin('user', 'todo.user_id', 'user.id')
         .then(data => {
-            res.send(data);
+            res.json(data);
         })
         .catch(err => { 
-            console.log(err);
-            res.send(`Error ${err}`);
+            console.error(err);
+            res.status(500).json({ error: 'An error occurred while fetching todos' });
         });
-    }
-);
+});
+
 
 app.get('/comment', (req, res) => {
     knex.select('*').from('comment')
