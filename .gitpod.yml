@@ -1,0 +1,14 @@
+image: gitpod/workspace-full  # Use a default workspace image
+
+tasks:
+  - init: |
+      # Perform setup tasks (e.g., start services or install dependencies)
+      echo "Setting up the workspace..."
+
+  - command: |
+      # Your workspace commands here (e.g., starting the app or running tests)
+      echo "Running commands..."
+
+resources:
+  cpu: 2        # Reduced CPU cores to 2
+  memory: 4Gi   # Reduced memory to 4GB
