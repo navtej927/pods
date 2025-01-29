@@ -28,5 +28,11 @@ services:
       - ./backend/src:/usr/src/app/src
     depends_on:
       - db
+      - adminer
     environment:
       - DATABASE_URL=postgres://root:root@db:5432/todoist
+      - host=localhost
+      - user=root
+      - password=root
+      - database=todoist
+      - port=5432

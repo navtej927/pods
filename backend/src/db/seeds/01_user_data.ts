@@ -1,11 +1,7 @@
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> } 
- */
+import { Knex } from "knex";
+import { TableNames } from "../table-names";
 
-const { TableNames } = require("../table-names");
-
-exports.seed = async function(knex) {
+export async function seed(knex: Knex): Promise<void> {
   await knex(TableNames.user).del()
   await knex(TableNames.user).insert([
     {

@@ -1,6 +1,7 @@
-const { TableNames } = require("../table-names");
+import { Knex } from "knex";
+import { TableNames } from "../table-names";
 
-exports.seed = function(knex) {
+export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
   return knex(TableNames.todo).del()
     .then(function () {
