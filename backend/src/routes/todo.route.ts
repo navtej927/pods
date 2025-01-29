@@ -1,27 +1,23 @@
 import Router from "@koa/router";
-import knex from "knex";
-import { Context } from "koa";
 import { TableNames } from "../db/table-names";
+import { IContext } from "../types";
 
 const todoRouter = new Router();
 
-const knexClient = knex({
-  client: "pg",
-  connection: process.env.DB_URL,
-});
-
-todoRouter.get("/todo", async (ctx: Context) => {
+todoRouter.get("/todo", async (ctx: IContext) => {
   try {
-    const todos = await knexClient.select("*").from(TableNames.todo);
+    const { knex } = ctx;
+    const todos = await knex.select("*").from(TableNames.todo);
     ctx.body = { todos };
   } catch (error) {
     ctx.status = 500;
   }
 });
 
-todoRouter.get("/todo/:id", async (ctx: Context) => {
+todoRouter.get("/todo/:id", async (ctx: IContext) => {
+    const { knex } = ctx;
     const todoID = ctx.params.id;
-    const user = await knexClient.select("*").from(TableNames.todo).where({ id: todoID }).first();
+    const user = await knex.select("*").from(TableNames.todo).where({ id: todoID }).first();
     ctx.body = { user };
 });
 

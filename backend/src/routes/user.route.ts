@@ -1,28 +1,28 @@
 import Router from "@koa/router";
-import knex from "knex";
-import { Context } from "koa";
 import { TableNames } from "../db/table-names";
+import { IContext } from "../types";
 
 const userRouter = new Router();
 
-const knexClient = knex({
-  client: "pg",
-  connection: process.env.DB_URL,
-});
-
-userRouter.get("/user", async (ctx: Context) => {
+userRouter.get("/user", async (ctx: IContext) => {
   try {
-    const users = await knexClient.select("*").from(TableNames.user);
+    const { knex } = ctx;
+    const users = await knex("*").from(TableNames.user);
     ctx.body = { users };
   } catch (error) {
     ctx.status = 500;
   }
 });
 
-userRouter.get("/user/:id", async (ctx: Context) => {
-    const userId = ctx.params.id;
-    const user = await knexClient.select("*").from(TableNames.user).where({ id: userId }).first();
-    ctx.body = { user };
+userRouter.get("/user/:id", async (ctx: IContext) => {
+  const { knex } = ctx;
+  const userId = ctx.params.id;
+  const user = await knex
+    .select("*")
+    .from(TableNames.user)
+    .where({ id: userId })
+    .first();
+  ctx.body = { user };
 });
 
 export const userRoutes = userRouter.routes();

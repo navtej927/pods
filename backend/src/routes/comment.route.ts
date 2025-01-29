@@ -1,18 +1,13 @@
 import Router from "@koa/router";
-import knex from "knex";
-import { Context } from "koa";
 import { TableNames } from "../db/table-names";
+import { IContext } from "../types";
 
 const commenRouter = new Router();
 
-const knexClient = knex({
-  client: "pg",
-  connection: process.env.DB_URL,
-});
-
-commenRouter.get("/comment", async (ctx: Context) => {
+commenRouter.get("/comment", async (ctx: IContext) => {
   try {
-    const comments = await knexClient.select("*").from(TableNames.comment);
+    const { knex } = ctx;
+    const comments = await knex.select("*").from(TableNames.comment);
     ctx.body = { comments };
   } catch (error) {
     ctx.status = 500;
