@@ -31,7 +31,7 @@ services:
       - adminer
     environment:
       - DB_URL=postgres://root:root@db:5432/todoist
-      - DB_HOST=localhost
+      - DB_HOST=db
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=todoist

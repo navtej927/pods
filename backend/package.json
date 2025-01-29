@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node ./src/index.js",
-    "dev": "nodemon ./src/index.ts --exec ts-node",
+    "dev": "NODE_ENV=development npm run migrate && npm run seed && nodemon ./src/index.ts --exec ts-node",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run"
   },

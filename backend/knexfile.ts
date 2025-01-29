@@ -8,9 +8,9 @@ console.log("process.env", process.env);
 
 const config: KnexConfig = {
   development: {
-    client: 'pg',
+    client: 'postgres',
     connection: {
-      host: process.env.DB_HOST || 'localhost',
+      host: process.env.DB_HOST || 'db',
       user: process.env.DB_USER || 'root',
       password: process.env.DB_PASSWORD || 'root',
       database: process.env.DB_NAME || 'todoist',
