@@ -8,6 +8,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8000
+EXPOSE 8080
 
-CMD ["sh", "-c", "npm start && npm run migrate && npm run seed"]
+CMD ["sh", "-c", "npm run dev && npm run migrate && npm run seed"]
