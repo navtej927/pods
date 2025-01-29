@@ -30,9 +30,9 @@ services:
       - db
       - adminer
     environment:
-      - DATABASE_URL=postgres://root:root@db:5432/todoist
-      - host=localhost
-      - user=root
-      - password=root
-      - database=todoist
-      - port=5432
+      - DB_URL=postgres://root:root@db:5432/todoist
+      - DB_HOST=localhost
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=todoist
+      - DB_PORT=5432

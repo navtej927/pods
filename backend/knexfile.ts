@@ -4,7 +4,7 @@ interface KnexConfig {
   [key: string]: Knex.Config;
 }
 
-console.log("process.env", process.env.NODE_ENV);
+console.log("process.env", process.env);
 
 const config: KnexConfig = {
   development: {
@@ -25,7 +25,7 @@ const config: KnexConfig = {
   },
   production: {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
+    connection: process.env.DB_URL,
     migrations: {
       directory: './db/migrations'
     },

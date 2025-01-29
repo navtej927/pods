@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node ./src/index.js",
-    "dev": "NODE_ENV=development npm run migrate && npm run seed && nodemon ./src/index.ts --exec ts-node",
+    "dev": "nodemon ./src/index.ts --exec ts-node",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run"
   },
@@ -22,7 +22,7 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "@types/koa": "^2.15.0",
+    "@types/koa": "^2.15.0",      
     "@types/koa__router": "^12.0.4",
     "typescript": "^5.7.3"
   }

@@ -6,12 +6,18 @@ const router = new Router();
 
 const knexClient = knex({
   client: "pg",
-  connection: process.env.DATABASE_URL,
+  connection: process.env.DB_URL,
 });
 
 // Define routes
-router.get("/", (ctx) => {
-  ctx.body = "Hello, World from Router";
+router.get("/", async (ctx) => {
+  try {
+    const users = await knexClient.select('*').from('user')
+    ctx.body = { users };
+  } catch (error) {
+    console.log(error);
+    ctx.status = 500;
+  }
 });
 
 router.get("/todo", (ctx) => {
